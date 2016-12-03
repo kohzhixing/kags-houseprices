@@ -6,6 +6,10 @@ output: html_notebook
 # Loading required packages and reading in data
 ```{r}
 library(data.table)
+library(reshape2)
+library(ggplot2)
+library(leaps) # subset selection function in this package
+library(MASS)
 
 data_raw <- fread("./Data/train.csv")
 ```
@@ -18,5 +22,47 @@ summary(data_raw)
 # Loading caret package and removing NZV variables
 ```{r}
 library(caret)
+
+
+nzv <- nearZeroVar(train, saveMetrics=TRUE)
+train<-train[,nzv$nzv==FALSE]
+
+#finding variables with a lot of NAs
+a<-vector()
+for(i in 1:length(train)) {
+        print(sum(is.na(train[, i])))
+        a[i]<- sum(is.na(train[, i]))
+}
+
+b<-a/nrow(train)
+names(train[,b<=0.7])
+
+#remove the column "Alley", "PoolQC", "Fence"
+#train<-train[,b<=0.7]
+#dim(train)
+
+#removal of id variable
+train<-train[,-1]
+
+g<-ggplot(data=train,aes(x=factor(FullBath),y=SalePrice))
+g+geom_boxplot()
+
+g2<-ggplot(data=train,aes(x=factor(HalfBath),y=SalePrice))
+g2<-g2+geom_boxplot()
+
+g3<-ggplot(data=train,aes(x=factor(Bedroom),y=SalePrice))
+g3+geom_boxplot()+coord_flip()
+
+g4<-ggplot(data=train,aes(x=log(LotArea),y=log(SalePrice),color=factor(BedroomAbvGr)))
+g4<-g4+geom_point()
+
+g5<-ggplot(data=train,aes(x=log(LotArea),y=log(SalePrice)))
+g5<-g5+geom_point()
+g5<-g5+facet_wrap(~ BedroomAbvGr)
+
+table(train$MoSold)
+table(train$YrSold)
+
+
 ```
 
