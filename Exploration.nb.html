@@ -172,20 +172,218 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
+<div id="loading-required-packages-and-reading-in-data" class="section level1">
+<h1>Loading required packages and reading in data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxuZGF0YV9yYXcgPC0gZnJlYWQoXCIuL0RhdGEvdHJhaW4uY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>library(data.table)
+data_raw &lt;- fread(&quot;./Data/train.csv&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQnVtcGVkIGNvbHVtbiA3NSB0byB0eXBlIGNoYXJhY3RlciBvbiBkYXRhIHJvdyA2LCBmaWVsZCBjb250YWlucyAnU2hlZCcuIENvZXJjaW5nIHByZXZpb3VzbHkgcmVhZCB2YWx1ZXMgaW4gdGhpcyBjb2x1bW4gZnJvbSBsb2dpY2FsLCBpbnRlZ2VyIG9yIG51bWVyaWMgYmFjayB0byBjaGFyYWN0ZXIgd2hpY2ggbWF5IG5vdCBiZSBsb3NzbGVzczsgZS5nLiwgaWYgJzAwJyBhbmQgJzAwMCcgb2NjdXJyZWQgYmVmb3JlIHRoZXkgd2lsbCBub3cgYmUganVzdCAnMCcsIGFuZCB0aGVyZSBtYXkgYmUgaW5jb25zaXN0ZW5jaWVzIHdpdGggdHJlYXRtZW50IG9mICcsLCcgYW5kICcsTkEsJyB0b28gKGlmIHRoZXkgb2NjdXJyZWQgaW4gdGhpcyBjb2x1bW4gYmVmb3JlIHRoZSBidW1wKS4gSWYgdGhpcyBtYXR0ZXJzIHBsZWFzZSByZXJ1biBhbmQgc2V0ICdjb2xDbGFzc2VzJyB0byAnY2hhcmFjdGVyJyBmb3IgdGhpcyBjb2x1bW4uIFBsZWFzZSBub3RlIHRoYXQgY29sdW1uIHR5cGUgZGV0ZWN0aW9uIHVzZXMgdGhlIGZpcnN0IDUgcm93cywgdGhlIG1pZGRsZSA1IHJvd3MgYW5kIHRoZSBsYXN0IDUgcm93cywgc28gaG9wZWZ1bGx5IHRoaXMgbWVzc2FnZSBzaG91bGQgYmUgdmVyeSByYXJlLiBJZiByZXBvcnRpbmcgdG8gZGF0YXRhYmxlLWhlbHAsIHBsZWFzZSByZXJ1biBhbmQgaW5jbHVkZSB0aGUgb3V0cHV0IGZyb20gdmVyYm9zZT1UUlVFLkJ1bXBlZCBjb2x1bW4gNzMgdG8gdHlwZSBjaGFyYWN0ZXIgb24gZGF0YSByb3cgMTk4LCBmaWVsZCBjb250YWlucyAnRXgnLiBDb2VyY2luZyBwcmV2aW91c2x5IHJlYWQgdmFsdWVzIGluIHRoaXMgY29sdW1uIGZyb20gbG9naWNhbCwgaW50ZWdlciBvciBudW1lcmljIGJhY2sgdG8gY2hhcmFjdGVyIHdoaWNoIG1heSBub3QgYmUgbG9zc2xlc3M7IGUuZy4sIGlmICcwMCcgYW5kICcwMDAnIG9jY3VycmVkIGJlZm9yZSB0aGV5IHdpbGwgbm93IGJlIGp1c3QgJzAnLCBhbmQgdGhlcmUgbWF5IGJlIGluY29uc2lzdGVuY2llcyB3aXRoIHRyZWF0bWVudCBvZiAnLCwnIGFuZCAnLE5BLCcgdG9vIChpZiB0aGV5IG9jY3VycmVkIGluIHRoaXMgY29sdW1uIGJlZm9yZSB0aGUgYnVtcCkuIElmIHRoaXMgbWF0dGVycyBwbGVhc2UgcmVydW4gYW5kIHNldCAnY29sQ2xhc3NlcycgdG8gJ2NoYXJhY3RlcicgZm9yIHRoaXMgY29sdW1uLiBQbGVhc2Ugbm90ZSB0aGF0IGNvbHVtbiB0eXBlIGRldGVjdGlvbiB1c2VzIHRoZSBmaXJzdCA1IHJvd3MsIHRoZSBtaWRkbGUgNSByb3dzIGFuZCB0aGUgbGFzdCA1IHJvd3MsIHNvIGhvcGVmdWxseSB0aGlzIG1lc3NhZ2Ugc2hvdWxkIGJlIHZlcnkgcmFyZS4gSWYgcmVwb3J0aW5nIHRvIGRhdGF0YWJsZS1oZWxwLCBwbGVhc2UgcmVydW4gYW5kIGluY2x1ZGUgdGhlIG91dHB1dCBmcm9tIHZlcmJvc2U9VFJVRS5cbiJ9 -->
+<pre><code>Bumped column 75 to type character on data row 6, field contains 'Shed'. Coercing previously read values in this column from logical, integer or numeric back to character which may not be lossless; e.g., if '00' and '000' occurred before they will now be just '0', and there may be inconsistencies with treatment of ',,' and ',NA,' too (if they occurred in this column before the bump). If this matters please rerun and set 'colClasses' to 'character' for this column. Please note that column type detection uses the first 5 rows, the middle 5 rows and the last 5 rows, so hopefully this message should be very rare. If reporting to datatable-help, please rerun and include the output from verbose=TRUE.Bumped column 73 to type character on data row 198, field contains 'Ex'. Coercing previously read values in this column from logical, integer or numeric back to character which may not be lossless; e.g., if '00' and '000' occurred before they will now be just '0', and there may be inconsistencies with treatment of ',,' and ',NA,' too (if they occurred in this column before the bump). If this matters please rerun and set 'colClasses' to 'character' for this column. Please note that column type detection uses the first 5 rows, the middle 5 rows and the last 5 rows, so hopefully this message should be very rare. If reporting to datatable-help, please rerun and include the output from verbose=TRUE.</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
+</div>
+<div id="summary-of-data" class="section level1">
+<h1>Summary of data</h1>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShkYXRhX3JhdylcbmBgYCJ9 -->
+<pre class="r"><code>summary(data_raw)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIElkICAgICAgICAgICBNU1N1YkNsYXNzICAgICAgTVNab25pbmcgICAgICAgICAgTG90RnJvbnRhZ2UgICAgXG4gTWluLiAgIDogICAxLjAgICBNaW4uICAgOiAyMC4wICAgTGVuZ3RoOjE0NjAgICAgICAgIE1pbi4gICA6IDIxLjAwICBcbiAxc3QgUXUuOiAzNjUuOCAgIDFzdCBRdS46IDIwLjAgICBDbGFzcyA6Y2hhcmFjdGVyICAgMXN0IFF1LjogNTkuMDAgIFxuIE1lZGlhbiA6IDczMC41ICAgTWVkaWFuIDogNTAuMCAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOiA2OS4wMCAgXG4gTWVhbiAgIDogNzMwLjUgICBNZWFuICAgOiA1Ni45ICAgICAgICAgICAgICAgICAgICAgIE1lYW4gICA6IDcwLjA1ICBcbiAzcmQgUXUuOjEwOTUuMiAgIDNyZCBRdS46IDcwLjAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogODAuMDAgIFxuIE1heC4gICA6MTQ2MC4wICAgTWF4LiAgIDoxOTAuMCAgICAgICAgICAgICAgICAgICAgICBNYXguICAgOjMxMy4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5BJ3MgICA6MjU5ICAgICBcbiAgICBMb3RBcmVhICAgICAgICAgIFN0cmVldCAgICAgICAgICAgICBBbGxleSAgICAgICAgICAgICBMb3RTaGFwZSAgICAgICAgXG4gTWluLiAgIDogIDEzMDAgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgIFxuIDFzdCBRdS46ICA3NTU0ICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICBcbiBNZWRpYW4gOiAgOTQ3OCAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gTWVhbiAgIDogMTA1MTcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46IDExNjAyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBNYXguICAgOjIxNTI0NSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIExhbmRDb250b3VyICAgICAgICAgVXRpbGl0aWVzICAgICAgICAgIExvdENvbmZpZyAgICAgICAgICBMYW5kU2xvcGUgICAgICAgIFxuIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE5laWdoYm9yaG9vZCAgICAgICAgQ29uZGl0aW9uMSAgICAgICAgIENvbmRpdGlvbjIgICAgICAgICAgQmxkZ1R5cGUgICAgICAgIFxuIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICBIb3VzZVN0eWxlICAgICAgICAgT3ZlcmFsbFF1YWwgICAgICBPdmVyYWxsQ29uZCAgICAgIFllYXJCdWlsdCAgIFxuIExlbmd0aDoxNDYwICAgICAgICBNaW4uICAgOiAxLjAwMCAgIE1pbi4gICA6MS4wMDAgICBNaW4uICAgOjE4NzIgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICAxc3QgUXUuOiA1LjAwMCAgIDFzdCBRdS46NS4wMDAgICAxc3QgUXUuOjE5NTQgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOiA2LjAwMCAgIE1lZGlhbiA6NS4wMDAgICBNZWRpYW4gOjE5NzMgIFxuICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiA2LjA5OSAgIE1lYW4gICA6NS41NzUgICBNZWFuICAgOjE5NzEgIFxuICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOiA3LjAwMCAgIDNyZCBRdS46Ni4wMDAgICAzcmQgUXUuOjIwMDAgIFxuICAgICAgICAgICAgICAgICAgICBNYXguICAgOjEwLjAwMCAgIE1heC4gICA6OS4wMDAgICBNYXguICAgOjIwMTAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICBZZWFyUmVtb2RBZGQgICBSb29mU3R5bGUgICAgICAgICAgIFJvb2ZNYXRsICAgICAgICAgRXh0ZXJpb3Ixc3QgICAgICAgXG4gTWluLiAgIDoxOTUwICAgTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICBcbiAxc3QgUXUuOjE5NjcgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1lZGlhbiA6MTk5NCAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gTWVhbiAgIDoxOTg1ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOjIwMDQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6MjAxMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBFeHRlcmlvcjJuZCAgICAgICAgIE1hc1ZuclR5cGUgICAgICAgICAgTWFzVm5yQXJlYSAgICAgIEV4dGVyUXVhbCAgICAgICAgXG4gTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgICBNaW4uICAgOiAgIDAuMCAgIExlbmd0aDoxNDYwICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgMXN0IFF1LjogICAwLjAgICBDbGFzcyA6Y2hhcmFjdGVyICBcbiBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1lZGlhbiA6ICAgMC4wICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiAxMDMuNyAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogMTY2LjAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6MTYwMC4wICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOQSdzICAgOjggICAgICAgICAgICAgICAgICAgICAgICAgIFxuICBFeHRlckNvbmQgICAgICAgICAgRm91bmRhdGlvbiAgICAgICAgICBCc210UXVhbCAgICAgICAgICAgQnNtdENvbmQgICAgICAgIFxuIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIEJzbXRFeHBvc3VyZSAgICAgICBCc210RmluVHlwZTEgICAgICAgICBCc210RmluU0YxICAgICBCc210RmluVHlwZTIgICAgICBcbiBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIE1pbi4gICA6ICAgMC4wICAgTGVuZ3RoOjE0NjAgICAgICAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICAxc3QgUXUuOiAgIDAuMCAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTWVkaWFuIDogMzgzLjUgICBNb2RlICA6Y2hhcmFjdGVyICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lYW4gICA6IDQ0My42ICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOiA3MTIuMiAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo1NjQ0LjAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICBCc210RmluU0YyICAgICAgICBCc210VW5mU0YgICAgICAgVG90YWxCc210U0YgICAgICAgSGVhdGluZyAgICAgICAgIFxuIE1pbi4gICA6ICAgMC4wMCAgIE1pbi4gICA6ICAgMC4wICAgTWluLiAgIDogICAwLjAgICBMZW5ndGg6MTQ2MCAgICAgICBcbiAxc3QgUXUuOiAgIDAuMDAgICAxc3QgUXUuOiAyMjMuMCAgIDFzdCBRdS46IDc5NS44ICAgQ2xhc3MgOmNoYXJhY3RlciAgXG4gTWVkaWFuIDogICAwLjAwICAgTWVkaWFuIDogNDc3LjUgICBNZWRpYW4gOiA5OTEuNSAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuIE1lYW4gICA6ICA0Ni41NSAgIE1lYW4gICA6IDU2Ny4yICAgTWVhbiAgIDoxMDU3LjQgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOiAgIDAuMDAgICAzcmQgUXUuOiA4MDguMCAgIDNyZCBRdS46MTI5OC4yICAgICAgICAgICAgICAgICAgICAgXG4gTWF4LiAgIDoxNDc0LjAwICAgTWF4LiAgIDoyMzM2LjAgICBNYXguICAgOjYxMTAuMCAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgSGVhdGluZ1FDICAgICAgICAgIENlbnRyYWxBaXIgICAgICAgICBFbGVjdHJpY2FsICAgICAgICAgICAxc3RGbHJTRiAgIFxuIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgIE1pbi4gICA6IDMzNCAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgMXN0IFF1LjogODgyICBcbiBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOjEwODcgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lYW4gICA6MTE2MyAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjoxMzkxICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNYXguICAgOjQ2OTIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgMm5kRmxyU0YgICAgIExvd1F1YWxGaW5TRiAgICAgICBHckxpdkFyZWEgICAgIEJzbXRGdWxsQmF0aCAgIFxuIE1pbi4gICA6ICAgMCAgIE1pbi4gICA6ICAwLjAwMCAgIE1pbi4gICA6IDMzNCAgIE1pbi4gICA6MC4wMDAwICBcbiAxc3QgUXUuOiAgIDAgICAxc3QgUXUuOiAgMC4wMDAgICAxc3QgUXUuOjExMzAgICAxc3QgUXUuOjAuMDAwMCAgXG4gTWVkaWFuIDogICAwICAgTWVkaWFuIDogIDAuMDAwICAgTWVkaWFuIDoxNDY0ICAgTWVkaWFuIDowLjAwMDAgIFxuIE1lYW4gICA6IDM0NyAgIE1lYW4gICA6ICA1Ljg0NSAgIE1lYW4gICA6MTUxNSAgIE1lYW4gICA6MC40MjUzICBcbiAzcmQgUXUuOiA3MjggICAzcmQgUXUuOiAgMC4wMDAgICAzcmQgUXUuOjE3NzcgICAzcmQgUXUuOjEuMDAwMCAgXG4gTWF4LiAgIDoyMDY1ICAgTWF4LiAgIDo1NzIuMDAwICAgTWF4LiAgIDo1NjQyICAgTWF4LiAgIDozLjAwMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgQnNtdEhhbGZCYXRoICAgICAgICBGdWxsQmF0aCAgICAgICAgSGFsZkJhdGggICAgICAgQmVkcm9vbUFidkdyICBcbiBNaW4uICAgOjAuMDAwMDAgICBNaW4uICAgOjAuMDAwICAgTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjAuMDAwICBcbiAxc3QgUXUuOjAuMDAwMDAgICAxc3QgUXUuOjEuMDAwICAgMXN0IFF1LjowLjAwMDAgICAxc3QgUXUuOjIuMDAwICBcbiBNZWRpYW4gOjAuMDAwMDAgICBNZWRpYW4gOjIuMDAwICAgTWVkaWFuIDowLjAwMDAgICBNZWRpYW4gOjMuMDAwICBcbiBNZWFuICAgOjAuMDU3NTMgICBNZWFuICAgOjEuNTY1ICAgTWVhbiAgIDowLjM4MjkgICBNZWFuICAgOjIuODY2ICBcbiAzcmQgUXUuOjAuMDAwMDAgICAzcmQgUXUuOjIuMDAwICAgM3JkIFF1LjoxLjAwMDAgICAzcmQgUXUuOjMuMDAwICBcbiBNYXguICAgOjIuMDAwMDAgICBNYXguICAgOjMuMDAwICAgTWF4LiAgIDoyLjAwMDAgICBNYXguICAgOjguMDAwICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgS2l0Y2hlbkFidkdyICAgS2l0Y2hlblF1YWwgICAgICAgICBUb3RSbXNBYnZHcmQgICAgIEZ1bmN0aW9uYWwgICAgICAgXG4gTWluLiAgIDowLjAwMCAgIExlbmd0aDoxNDYwICAgICAgICBNaW4uICAgOiAyLjAwMCAgIExlbmd0aDoxNDYwICAgICAgIFxuIDFzdCBRdS46MS4wMDAgICBDbGFzcyA6Y2hhcmFjdGVyICAgMXN0IFF1LjogNS4wMDAgICBDbGFzcyA6Y2hhcmFjdGVyICBcbiBNZWRpYW4gOjEuMDAwICAgTW9kZSAgOmNoYXJhY3RlciAgIE1lZGlhbiA6IDYuMDAwICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gTWVhbiAgIDoxLjA0NyAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiA2LjUxOCAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46MS4wMDAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogNy4wMDAgICAgICAgICAgICAgICAgICAgICBcbiBNYXguICAgOjMuMDAwICAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6MTQuMDAwICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgRmlyZXBsYWNlcyAgICBGaXJlcGxhY2VRdSAgICAgICAgIEdhcmFnZVR5cGUgICAgICAgICBHYXJhZ2VZckJsdCAgXG4gTWluLiAgIDowLjAwMCAgIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTWluLiAgIDoxOTAwICBcbiAxc3QgUXUuOjAuMDAwICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICAxc3QgUXUuOjE5NjEgIFxuIE1lZGlhbiA6MS4wMDAgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1lZGlhbiA6MTk4MCAgXG4gTWVhbiAgIDowLjYxMyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDoxOTc5ICBcbiAzcmQgUXUuOjEuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOjIwMDIgIFxuIE1heC4gICA6My4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6MjAxMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTkEncyAgIDo4MSAgICBcbiBHYXJhZ2VGaW5pc2ggICAgICAgICBHYXJhZ2VDYXJzICAgICAgR2FyYWdlQXJlYSAgICAgIEdhcmFnZVF1YWwgICAgICAgXG4gTGVuZ3RoOjE0NjAgICAgICAgIE1pbi4gICA6MC4wMDAgICBNaW4uICAgOiAgIDAuMCAgIExlbmd0aDoxNDYwICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICAxc3QgUXUuOjEuMDAwICAgMXN0IFF1LjogMzM0LjUgICBDbGFzcyA6Y2hhcmFjdGVyICBcbiBNb2RlICA6Y2hhcmFjdGVyICAgTWVkaWFuIDoyLjAwMCAgIE1lZGlhbiA6IDQ4MC4wICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gICAgICAgICAgICAgICAgICAgIE1lYW4gICA6MS43NjcgICBNZWFuICAgOiA0NzMuMCAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOjIuMDAwICAgM3JkIFF1LjogNTc2LjAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo0LjAwMCAgIE1heC4gICA6MTQxOC4wICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICBHYXJhZ2VDb25kICAgICAgICAgUGF2ZWREcml2ZSAgICAgICAgICBXb29kRGVja1NGICAgICAgT3BlblBvcmNoU0YgICAgXG4gTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgICBNaW4uICAgOiAgMC4wMCAgIE1pbi4gICA6ICAwLjAwICBcbiBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIDFzdCBRdS46ICAwLjAwICAgMXN0IFF1LjogIDAuMDAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTWVkaWFuIDogIDAuMDAgICBNZWRpYW4gOiAyNS4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiA5NC4yNCAgIE1lYW4gICA6IDQ2LjY2ICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46MTY4LjAwICAgM3JkIFF1LjogNjguMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo4NTcuMDAgICBNYXguICAgOjU0Ny4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBFbmNsb3NlZFBvcmNoICAgICAgM1NzblBvcmNoICAgICAgIFNjcmVlblBvcmNoICAgICAgICBQb29sQXJlYSAgICAgIFxuIE1pbi4gICA6ICAwLjAwICAgTWluLiAgIDogIDAuMDAgICBNaW4uICAgOiAgMC4wMCAgIE1pbi4gICA6ICAwLjAwMCAgXG4gMXN0IFF1LjogIDAuMDAgICAxc3QgUXUuOiAgMC4wMCAgIDFzdCBRdS46ICAwLjAwICAgMXN0IFF1LjogIDAuMDAwICBcbiBNZWRpYW4gOiAgMC4wMCAgIE1lZGlhbiA6ICAwLjAwICAgTWVkaWFuIDogIDAuMDAgICBNZWRpYW4gOiAgMC4wMDAgIFxuIE1lYW4gICA6IDIxLjk1ICAgTWVhbiAgIDogIDMuNDEgICBNZWFuICAgOiAxNS4wNiAgIE1lYW4gICA6ICAyLjc1OSAgXG4gM3JkIFF1LjogIDAuMDAgICAzcmQgUXUuOiAgMC4wMCAgIDNyZCBRdS46ICAwLjAwICAgM3JkIFF1LjogIDAuMDAwICBcbiBNYXguICAgOjU1Mi4wMCAgIE1heC4gICA6NTA4LjAwICAgTWF4LiAgIDo0ODAuMDAgICBNYXguICAgOjczOC4wMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgUG9vbFFDICAgICAgICAgICAgIEZlbmNlICAgICAgICAgICBNaXNjRmVhdHVyZSAgICAgICAgICAgTWlzY1ZhbCAgICAgICAgXG4gTGVuZ3RoOjE0NjAgICAgICAgIExlbmd0aDoxNDYwICAgICAgICBMZW5ndGg6MTQ2MCAgICAgICAgTWluLiAgIDogICAgMC4wMCAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgMXN0IFF1LjogICAgMC4wMCAgXG4gTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTWVkaWFuIDogICAgMC4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDogICA0My40OSAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogICAgMC4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDoxNTUwMC4wMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgIE1vU29sZCAgICAgICAgICAgWXJTb2xkICAgICAgIFNhbGVUeXBlICAgICAgICAgU2FsZUNvbmRpdGlvbiAgICAgXG4gTWluLiAgIDogMS4wMDAgICBNaW4uICAgOjIwMDYgICBMZW5ndGg6MTQ2MCAgICAgICAgTGVuZ3RoOjE0NjAgICAgICAgXG4gMXN0IFF1LjogNS4wMDAgICAxc3QgUXUuOjIwMDcgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgXG4gTWVkaWFuIDogNi4wMDAgICBNZWRpYW4gOjIwMDggICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgXG4gTWVhbiAgIDogNi4zMjIgICBNZWFuICAgOjIwMDggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gM3JkIFF1LjogOC4wMDAgICAzcmQgUXUuOjIwMDkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWF4LiAgIDoxMi4wMDAgICBNYXguICAgOjIwMTAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICBTYWxlUHJpY2UgICAgIFxuIE1pbi4gICA6IDM0OTAwICBcbiAxc3QgUXUuOjEyOTk3NSAgXG4gTWVkaWFuIDoxNjMwMDAgIFxuIE1lYW4gICA6MTgwOTIxICBcbiAzcmQgUXUuOjIxNDAwMCAgXG4gTWF4LiAgIDo3NTUwMDAgIFxuICAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code>       Id           MSSubClass      MSZoning          LotFrontage    
+ Min.   :   1.0   Min.   : 20.0   Length:1460        Min.   : 21.00  
+ 1st Qu.: 365.8   1st Qu.: 20.0   Class :character   1st Qu.: 59.00  
+ Median : 730.5   Median : 50.0   Mode  :character   Median : 69.00  
+ Mean   : 730.5   Mean   : 56.9                      Mean   : 70.05  
+ 3rd Qu.:1095.2   3rd Qu.: 70.0                      3rd Qu.: 80.00  
+ Max.   :1460.0   Max.   :190.0                      Max.   :313.00  
+                                                     NA's   :259     
+    LotArea          Street             Alley             LotShape        
+ Min.   :  1300   Length:1460        Length:1460        Length:1460       
+ 1st Qu.:  7554   Class :character   Class :character   Class :character  
+ Median :  9478   Mode  :character   Mode  :character   Mode  :character  
+ Mean   : 10517                                                           
+ 3rd Qu.: 11602                                                           
+ Max.   :215245                                                           
+                                                                          
+ LandContour         Utilities          LotConfig          LandSlope        
+ Length:1460        Length:1460        Length:1460        Length:1460       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ Neighborhood        Condition1         Condition2          BldgType        
+ Length:1460        Length:1460        Length:1460        Length:1460       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+  HouseStyle         OverallQual      OverallCond      YearBuilt   
+ Length:1460        Min.   : 1.000   Min.   :1.000   Min.   :1872  
+ Class :character   1st Qu.: 5.000   1st Qu.:5.000   1st Qu.:1954  
+ Mode  :character   Median : 6.000   Median :5.000   Median :1973  
+                    Mean   : 6.099   Mean   :5.575   Mean   :1971  
+                    3rd Qu.: 7.000   3rd Qu.:6.000   3rd Qu.:2000  
+                    Max.   :10.000   Max.   :9.000   Max.   :2010  
+                                                                   
+  YearRemodAdd   RoofStyle           RoofMatl         Exterior1st       
+ Min.   :1950   Length:1460        Length:1460        Length:1460       
+ 1st Qu.:1967   Class :character   Class :character   Class :character  
+ Median :1994   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1985                                                           
+ 3rd Qu.:2004                                                           
+ Max.   :2010                                                           
+                                                                        
+ Exterior2nd         MasVnrType          MasVnrArea      ExterQual        
+ Length:1460        Length:1460        Min.   :   0.0   Length:1460       
+ Class :character   Class :character   1st Qu.:   0.0   Class :character  
+ Mode  :character   Mode  :character   Median :   0.0   Mode  :character  
+                                       Mean   : 103.7                     
+                                       3rd Qu.: 166.0                     
+                                       Max.   :1600.0                     
+                                       NA's   :8                          
+  ExterCond          Foundation          BsmtQual           BsmtCond        
+ Length:1460        Length:1460        Length:1460        Length:1460       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ BsmtExposure       BsmtFinType1         BsmtFinSF1     BsmtFinType2      
+ Length:1460        Length:1460        Min.   :   0.0   Length:1460       
+ Class :character   Class :character   1st Qu.:   0.0   Class :character  
+ Mode  :character   Mode  :character   Median : 383.5   Mode  :character  
+                                       Mean   : 443.6                     
+                                       3rd Qu.: 712.2                     
+                                       Max.   :5644.0                     
+                                                                          
+   BsmtFinSF2        BsmtUnfSF       TotalBsmtSF       Heating         
+ Min.   :   0.00   Min.   :   0.0   Min.   :   0.0   Length:1460       
+ 1st Qu.:   0.00   1st Qu.: 223.0   1st Qu.: 795.8   Class :character  
+ Median :   0.00   Median : 477.5   Median : 991.5   Mode  :character  
+ Mean   :  46.55   Mean   : 567.2   Mean   :1057.4                     
+ 3rd Qu.:   0.00   3rd Qu.: 808.0   3rd Qu.:1298.2                     
+ Max.   :1474.00   Max.   :2336.0   Max.   :6110.0                     
+                                                                       
+  HeatingQC          CentralAir         Electrical           1stFlrSF   
+ Length:1460        Length:1460        Length:1460        Min.   : 334  
+ Class :character   Class :character   Class :character   1st Qu.: 882  
+ Mode  :character   Mode  :character   Mode  :character   Median :1087  
+                                                          Mean   :1163  
+                                                          3rd Qu.:1391  
+                                                          Max.   :4692  
+                                                                        
+    2ndFlrSF     LowQualFinSF       GrLivArea     BsmtFullBath   
+ Min.   :   0   Min.   :  0.000   Min.   : 334   Min.   :0.0000  
+ 1st Qu.:   0   1st Qu.:  0.000   1st Qu.:1130   1st Qu.:0.0000  
+ Median :   0   Median :  0.000   Median :1464   Median :0.0000  
+ Mean   : 347   Mean   :  5.845   Mean   :1515   Mean   :0.4253  
+ 3rd Qu.: 728   3rd Qu.:  0.000   3rd Qu.:1777   3rd Qu.:1.0000  
+ Max.   :2065   Max.   :572.000   Max.   :5642   Max.   :3.0000  
+                                                                 
+  BsmtHalfBath        FullBath        HalfBath       BedroomAbvGr  
+ Min.   :0.00000   Min.   :0.000   Min.   :0.0000   Min.   :0.000  
+ 1st Qu.:0.00000   1st Qu.:1.000   1st Qu.:0.0000   1st Qu.:2.000  
+ Median :0.00000   Median :2.000   Median :0.0000   Median :3.000  
+ Mean   :0.05753   Mean   :1.565   Mean   :0.3829   Mean   :2.866  
+ 3rd Qu.:0.00000   3rd Qu.:2.000   3rd Qu.:1.0000   3rd Qu.:3.000  
+ Max.   :2.00000   Max.   :3.000   Max.   :2.0000   Max.   :8.000  
+                                                                   
+  KitchenAbvGr   KitchenQual         TotRmsAbvGrd     Functional       
+ Min.   :0.000   Length:1460        Min.   : 2.000   Length:1460       
+ 1st Qu.:1.000   Class :character   1st Qu.: 5.000   Class :character  
+ Median :1.000   Mode  :character   Median : 6.000   Mode  :character  
+ Mean   :1.047                      Mean   : 6.518                     
+ 3rd Qu.:1.000                      3rd Qu.: 7.000                     
+ Max.   :3.000                      Max.   :14.000                     
+                                                                       
+   Fireplaces    FireplaceQu         GarageType         GarageYrBlt  
+ Min.   :0.000   Length:1460        Length:1460        Min.   :1900  
+ 1st Qu.:0.000   Class :character   Class :character   1st Qu.:1961  
+ Median :1.000   Mode  :character   Mode  :character   Median :1980  
+ Mean   :0.613                                         Mean   :1979  
+ 3rd Qu.:1.000                                         3rd Qu.:2002  
+ Max.   :3.000                                         Max.   :2010  
+                                                       NA's   :81    
+ GarageFinish         GarageCars      GarageArea      GarageQual       
+ Length:1460        Min.   :0.000   Min.   :   0.0   Length:1460       
+ Class :character   1st Qu.:1.000   1st Qu.: 334.5   Class :character  
+ Mode  :character   Median :2.000   Median : 480.0   Mode  :character  
+                    Mean   :1.767   Mean   : 473.0                     
+                    3rd Qu.:2.000   3rd Qu.: 576.0                     
+                    Max.   :4.000   Max.   :1418.0                     
+                                                                       
+  GarageCond         PavedDrive          WoodDeckSF      OpenPorchSF    
+ Length:1460        Length:1460        Min.   :  0.00   Min.   :  0.00  
+ Class :character   Class :character   1st Qu.:  0.00   1st Qu.:  0.00  
+ Mode  :character   Mode  :character   Median :  0.00   Median : 25.00  
+                                       Mean   : 94.24   Mean   : 46.66  
+                                       3rd Qu.:168.00   3rd Qu.: 68.00  
+                                       Max.   :857.00   Max.   :547.00  
+                                                                        
+ EnclosedPorch      3SsnPorch       ScreenPorch        PoolArea      
+ Min.   :  0.00   Min.   :  0.00   Min.   :  0.00   Min.   :  0.000  
+ 1st Qu.:  0.00   1st Qu.:  0.00   1st Qu.:  0.00   1st Qu.:  0.000  
+ Median :  0.00   Median :  0.00   Median :  0.00   Median :  0.000  
+ Mean   : 21.95   Mean   :  3.41   Mean   : 15.06   Mean   :  2.759  
+ 3rd Qu.:  0.00   3rd Qu.:  0.00   3rd Qu.:  0.00   3rd Qu.:  0.000  
+ Max.   :552.00   Max.   :508.00   Max.   :480.00   Max.   :738.000  
+                                                                     
+    PoolQC             Fence           MiscFeature           MiscVal        
+ Length:1460        Length:1460        Length:1460        Min.   :    0.00  
+ Class :character   Class :character   Class :character   1st Qu.:    0.00  
+ Mode  :character   Mode  :character   Mode  :character   Median :    0.00  
+                                                          Mean   :   43.49  
+                                                          3rd Qu.:    0.00  
+                                                          Max.   :15500.00  
+                                                                            
+     MoSold           YrSold       SaleType         SaleCondition     
+ Min.   : 1.000   Min.   :2006   Length:1460        Length:1460       
+ 1st Qu.: 5.000   1st Qu.:2007   Class :character   Class :character  
+ Median : 6.000   Median :2008   Mode  :character   Mode  :character  
+ Mean   : 6.322   Mean   :2008                                        
+ 3rd Qu.: 8.000   3rd Qu.:2009                                        
+ Max.   :12.000   Max.   :2010                                        
+                                                                      
+   SalePrice     
+ Min.   : 34900  
+ 1st Qu.:129975  
+ Median :163000  
+ Mean   :180921  
+ 3rd Qu.:214000  
+ Max.   :755000  
+                 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="loading-caret-package-and-removing-nzv-variables" class="section level1">
+<h1>Loading caret package and removing NZV variables</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjYXJldClcblxuYGBgIn0= -->
+<pre class="r"><code>library(caret)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsYXR0aWNlXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGdncGxvdDJcbiJ9 -->
+<pre><code>Loading required package: lattice
+Loading required package: ggplot2</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogImthZ3MtaG91c2VwcmljZXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3J9DQpwbG90KGNhcnMpDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogImthZ3MtaG91c2VwcmljZXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIExvYWRpbmcgcmVxdWlyZWQgcGFja2FnZXMgYW5kIHJlYWRpbmcgaW4gZGF0YQ0KYGBge3J9DQpsaWJyYXJ5KGRhdGEudGFibGUpDQoNCmRhdGFfcmF3IDwtIGZyZWFkKCIuL0RhdGEvdHJhaW4uY3N2IikNCmBgYA0KDQojIFN1bW1hcnkgb2YgZGF0YQ0KYGBge3J9DQpzdW1tYXJ5KGRhdGFfcmF3KQ0KYGBgDQoNCiMgTG9hZGluZyBjYXJldCBwYWNrYWdlIGFuZCByZW1vdmluZyBOWlYgdmFyaWFibGVzDQpgYGB7cn0NCmxpYnJhcnkoY2FyZXQpDQpgYGANCg0K</div>
 
 
 
